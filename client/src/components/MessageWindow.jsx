@@ -6,7 +6,7 @@ import NoChatSelected from "./NoChatSelected.jsx";
 
 const MessageWindow = () => {
 
-    const isChatSelected = false;
+    const isChatSelected = true;
 
     return (
         <>

@@ -3,8 +3,12 @@ import {Route, Routes} from "react-router-dom";
 import Home from "./pages/Home.jsx";
 import Register from "./pages/Register.jsx";
 import Login from "./pages/Login.jsx";
+import axios from "axios";
 
 function App() {
+
+    axios.defaults.baseURL = "http://localhost:3001/api";
+    axios.defaults.withCredentials = true;
 
   return (
     <div className="h-screen flex items-center justify-center">

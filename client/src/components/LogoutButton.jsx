@@ -1,13 +1,26 @@
 import React, {useState} from 'react';
+import axios from "axios";
+import {useNavigate} from "react-router-dom";
 
 const LogoutButton = () => {
 
     const [isHovered, setIsHovered] = useState(false);
+    const navigate = useNavigate();
+
+    const logout = async () => {
+        try {
+            await axios.post("/auth/logout");
+            navigate("/login");
+        } catch (error) {
+            console.error(error)
+        }
+    }
 
     return (
         <div className="flex glass items-center gap-3 p-2 bg-gray-100 bg-opacity-10 rounded-lg cursor-pointer"
              onMouseEnter={() => setIsHovered(true)}
              onMouseLeave={() => setIsHovered(false)}
+             onClick={logout}
         >
             <p className={`text-lg font-semibold ${isHovered ? 'w-12 opacity-100' : 'w-0 opacity-0'} duration-300`}>Logout</p>
             <svg xmlns="http://www.w3.org/2000/svg"

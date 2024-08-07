@@ -1,6 +1,7 @@
 import express from 'express'
 import dotenv from 'dotenv'
-import authRouter from "./routes/auth.js";
+import authRoutes from "./routes/auth.js";
+import messageRoutes from "./routes/message.js";
 import mongoose from 'mongoose'
 import cors from 'cors'
 
@@ -29,6 +30,7 @@ app.use(cors({
     credentials: true,
     origin: process.env.CLIENT_URL
 }));
-app.use("/api/auth", authRouter)
+app.use("/api/auth", authRoutes)
+app.use("/api/messages", messageRoutes)
 
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

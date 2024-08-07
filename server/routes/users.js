@@ -1,9 +1,9 @@
 import express from "express";
 import {getUsers} from "../controllers/users.js";
-import {getUserProfile} from "../middleware/userProfile.js";
+import {authenticateUser} from "../middleware/userProfile.js";
 
 const router = express.Router();
 
-router.get("/", getUserProfile, getUsers);
+router.get("/", authenticateUser, getUsers);
 
 export default router;

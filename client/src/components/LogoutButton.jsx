@@ -1,15 +1,18 @@
 import React, {useState} from 'react';
 import axios from "axios";
 import {useNavigate} from "react-router-dom";
+import {useAuth} from "../context/AuthContext.jsx";
 
 const LogoutButton = () => {
 
     const [isHovered, setIsHovered] = useState(false);
     const navigate = useNavigate();
+    const {currentUser, setCurrentUser} = useAuth();
 
     const logout = async () => {
         try {
             await axios.post("/auth/logout");
+            setCurrentUser(null);
             navigate("/login");
         } catch (error) {
             console.error(error)

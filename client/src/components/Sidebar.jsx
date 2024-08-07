@@ -2,10 +2,9 @@ import React, {useEffect, useState} from 'react';
 import Search from "./Search.jsx";
 import Conversations from "./Conversations.jsx";
 import LogoutButton from "./LogoutButton.jsx";
+import {useAuth} from "../context/AuthContext.jsx";
 
 const Sidebar = () => {
-
-
 
     return (
         <div style={{flex: 1}}>

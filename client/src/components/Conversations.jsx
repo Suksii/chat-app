@@ -1,36 +1,22 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import Conversation from "./Conversation.jsx";
-import axios from "axios";
-import user from "../../../server/models/user.js";
+import useGetConversations from "../hooks/useGetConversations.jsx";
+import Loading from "../loading/Loading.jsx";
 
 const Conversations = () => {
 
-    const [users, setUsers] = useState([]);
-
-    const getUsers = async () => {
-        try {
-            const response = await axios.get("/users");
-            setUsers(response.data);
-            console.log(response.data);
-        } catch (error) {
-            console.error(error);
-        }
-    }
-
-    useEffect(() => {
-        getUsers();
-    }, []);
-
+    const {loading, users} = useGetConversations();
     return (
         <div className="flex flex-col flex-1 overflow-y-auto">
                 {users.map((user, index) => {
                     return (
-                        <div key={index}>
-                            <Conversation fullName={user.fullName}/>
-                            <div className="divider -my-1"></div>
+                        <div key={user._id}>
+                            <Conversation user={user}/>
+                            {index === users.length - 1 ? null : <div className="divider my-0 py-0 h-1"></div>}
                         </div>
                     )
                 })}
+            {loading && <Loading className="loading-spinner-sm mx-auto"/>}
         </div>
     );
 };

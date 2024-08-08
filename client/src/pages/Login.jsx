@@ -1,12 +1,13 @@
 import {useState} from 'react';
 import {Link} from "react-router-dom";
 import useLogin from "../hooks/useLogin.jsx";
+import LoadingButton from "../loading/LoadingButton.jsx";
 
 const Login = () => {
 
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    const {login} = useLogin();
+    const {login, loading} = useLogin();
 
     const handleLogin = async (e) => {
         e.preventDefault();
@@ -32,7 +33,7 @@ const Login = () => {
                             <span>Don't have an account?</span>
                             <Link to="/register" className="text-blue-600 font-semibold">Register here</Link>
                         </p>
-                        <button className="btn glass btn-neutral text-xl w-full">Login</button>
+                        <button className="btn glass btn-neutral text-xl w-full">{loading ? <LoadingButton/> : "Login"}</button>
                     </form>
                 </div>
             </div>

@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import {Link} from "react-router-dom";
 import useRegister from "../hooks/useRegister.jsx";
+import LoadingButton from "../loading/LoadingButton.jsx";
 
 const Register = () => {
 
@@ -8,7 +9,7 @@ const Register = () => {
     const [fullName, setFullName] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
-    const {register} = useRegister();
+    const {register, loading} = useRegister();
 
 
     const handleRegister = async (e) => {
@@ -45,7 +46,7 @@ const Register = () => {
                         <span>Already have an account?</span>
                         <Link to="/login" className="text-blue-600 font-semibold">Login here</Link>
                     </p>
-                    <button className="btn glass btn-neutral text-xl w-full">Register</button>
+                    <button className="btn glass btn-neutral text-xl w-full">{loading ? <LoadingButton/> : "Register"}</button>
                 </form>
             </div>
         </div>

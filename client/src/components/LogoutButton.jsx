@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import useLogout from "../hooks/useLogout.jsx";
-import LoadingButton from "../loading/LoadingButton.jsx";
+import Loading from "../loading/Loading.jsx";
 
 const LogoutButton = () => {
 
@@ -14,7 +14,7 @@ const LogoutButton = () => {
              onClick={logout}
         >
             {
-                loading ? <LoadingButton/> :
+                loading ? <Loading/> :
                 <>
                     <p className={`text-lg font-semibold ${isHovered ? 'w-12 opacity-100' : 'w-0 opacity-0'} duration-300`}>Logout</p>
                     <svg xmlns="http://www.w3.org/2000/svg"

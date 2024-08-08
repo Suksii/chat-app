@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {Link} from "react-router-dom";
 import useRegister from "../hooks/useRegister.jsx";
-import LoadingButton from "../loading/LoadingButton.jsx";
+import Loading from "../loading/Loading.jsx";
 
 const Register = () => {
 
@@ -46,7 +46,7 @@ const Register = () => {
                         <span>Already have an account?</span>
                         <Link to="/login" className="text-blue-600 font-semibold">Login here</Link>
                     </p>
-                    <button className="btn glass btn-neutral text-xl w-full">{loading ? <LoadingButton/> : "Register"}</button>
+                    <button className="btn glass btn-neutral text-xl w-full">{loading ? <Loading/> : "Register"}</button>
                 </form>
             </div>
         </div>

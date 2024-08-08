@@ -4,9 +4,10 @@ import {Navigate} from "react-router-dom";
 
 const ProtectedRoute = ({element}) => {
 
-    const {currentUser} = useAuth();
+    const {currentUser, loading} = useAuth();
 
-    if(currentUser === null) return (<div>Loading...</div>);
+    if (loading || currentUser === null)
+        return <div>Loading...</div>
 
     return currentUser ? element : <Navigate to="/login"/>
 };

@@ -1,23 +1,11 @@
 import React, {useState} from 'react';
-import axios from "axios";
 import {useNavigate} from "react-router-dom";
-import {useAuth} from "../context/AuthContext.jsx";
+import useLogout from "../hooks/useLogout.jsx";
 
 const LogoutButton = () => {
 
     const [isHovered, setIsHovered] = useState(false);
-    const navigate = useNavigate();
-    const {currentUser, setCurrentUser} = useAuth();
-
-    const logout = async () => {
-        try {
-            await axios.post("/auth/logout");
-            setCurrentUser(null);
-            navigate("/login");
-        } catch (error) {
-            console.error(error)
-        }
-    }
+    const {logout} = useLogout();
 
     return (
         <div className="flex glass items-center gap-3 p-2 bg-gray-100 bg-opacity-10 rounded-lg cursor-pointer"

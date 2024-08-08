@@ -4,7 +4,6 @@ import Home from "./pages/Home.jsx";
 import Register from "./pages/Register.jsx";
 import Login from "./pages/Login.jsx";
 import axios from "axios";
-import {useAuth} from "./context/AuthContext.jsx";
 import ProtectedRoute from "./protectedRoute/ProtectedRoute.jsx";
 
 function App() {

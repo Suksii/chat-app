@@ -1,33 +1,23 @@
 import {useState} from 'react';
 import {Link} from "react-router-dom";
-import {useNavigate} from "react-router-dom";
-import axios from "axios";
-import {useAuth} from "../context/AuthContext.jsx";
+import useLogin from "../hooks/useLogin.jsx";
 
 const Login = () => {
 
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    const navigate = useNavigate();
+    const {login} = useLogin();
 
-    const login = async (e) => {
+    const handleLogin = async (e) => {
         e.preventDefault();
-        try {
-            await axios.post("/auth/login", {
-                username,
-                password
-            });
-            navigate("/");
-        } catch (error) {
-            console.error(error)
-        }
+        await login(username, password);
     }
 
         return (
             <div className="flex flex-col justify-center items-center min-w-96 mx-auto">
                 <div className="w-full bg-gray-100 bg-clip-padding backdrop-filter rounded-lg px-4 py-8 backdrop-blur-lg bg-opacity-10">
                     <h1 className="text-3xl text-gray-300 text-center font-semibold">Login</h1>
-                    <form className="w-full flex flex-col items-center justify-center gap-2 py-4" onSubmit={login}>
+                    <form className="w-full flex flex-col items-center justify-center gap-2 py-4" onSubmit={handleLogin}>
                         <input placeholder="Type username"
                                type="text"
                                className="input input-ghost w-full focus:bg-opacity-0 focus:outline-none"

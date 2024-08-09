@@ -3,18 +3,19 @@ import UserAvatar from "./UserAvatar.jsx";
 import Messages from "./Messages.jsx";
 import MessageInput from "./MessageInput.jsx";
 import NoChatSelected from "./NoChatSelected.jsx";
+import {useConversations} from "../context/ConversationsContext.jsx";
 
 const MessageWindow = () => {
 
-    const isChatSelected = true;
+    const {selectedConversation} = useConversations();
 
     return (
         <>
-            {isChatSelected ? (
+            {selectedConversation !== null ? (
             <div style={{flex: 2}} className={"flex flex-col"}>
                 <div className="w-full flex gap-2 items-center bg-gray-100 bg-opacity-50 p-1">
                     <UserAvatar />
-                    <p className="text-lg font-semibold">Full Name</p>
+                    <p className="text-lg font-semibold">{selectedConversation?.fullName}</p>
                 </div>
                     <Messages/>
                 <MessageInput/>

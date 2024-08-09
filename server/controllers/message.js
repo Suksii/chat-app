@@ -49,6 +49,8 @@ export const getMessages = async (req, res) => {
             return res.status(404).json({message: "Conversation not found"})
         }
 
+        res.status(200).json(conversation.messages);
+
     } catch (error) {
         res.status(500).json({message: "Internal Server Error"})
     }

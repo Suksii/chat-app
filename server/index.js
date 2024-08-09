@@ -6,8 +6,9 @@ import userRoutes from "./routes/users.js";
 import mongoose from 'mongoose'
 import cookieParser from 'cookie-parser'
 import cors from 'cors'
+import {app, server} from "./socket/socket.js";
 
-const app = express();
+// const app = express();
 
 dotenv.config()
 
@@ -37,4 +38,4 @@ app.use("/api/auth", authRoutes)
 app.use("/api/messages", messageRoutes)
 app.use("/api/users", userRoutes)
 
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+server.listen(PORT, () => console.log(`Server running on port ${PORT}`));

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import UserAvatar from "./UserAvatar.jsx";
 import Messages from "./Messages.jsx";
 import MessageInput from "./MessageInput.jsx";
@@ -7,7 +7,11 @@ import {useConversations} from "../context/ConversationsContext.jsx";
 
 const MessageWindow = () => {
 
-    const {selectedConversation} = useConversations();
+    const {selectedConversation, setSelectedConversation} = useConversations();
+
+    useEffect(() => {
+        return () => setSelectedConversation(null);
+    }, [])
 
     return (
         <>

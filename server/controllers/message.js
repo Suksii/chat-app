@@ -14,7 +14,8 @@ export const sendMessage = async (req, res) => {
         })
         if(!conversation) {
             conversation = await Conversation.create({
-                members: [senderID, receiverID]
+                members: [senderID, receiverID],
+                messages: []
             });
         }
         const newMessage = await Message.create({
@@ -29,7 +30,7 @@ export const sendMessage = async (req, res) => {
 
         res.status(201).json(newMessage);
     } catch (error) {
-        res.status(500).json({message: "Internal Server Error"})
+        res.status(500).json({message: "Internal Server Error", error})
     }
 }
 

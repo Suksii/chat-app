@@ -7,11 +7,11 @@ const Message = ({message}) => {
     const {currentUser} = useAuth();
     const {selectedConversation} = useConversations();
 
-    const isSendersMessage = message.senderId === currentUser._id;
+    const isSendersMessage = message.senderID === currentUser._id;
     const timeSent = message.createdAt.split('T')[1].slice(0, 5)
 
     return (
-        <div className={`chat ${isSendersMessage ? 'chat-start' : 'chat-end'}`}>
+        <div className={`chat ${isSendersMessage ? 'chat-end' : 'chat-start'}`}>
             <div className="chat-image avatar">
                 <div className="w-10 h-10 rounded-full bg-gray-100">
                     {/*<img src={message.senderId === currentUser._id ? currentUser.avatar : selectedConversation.avatar}*/}

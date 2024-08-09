@@ -20,7 +20,6 @@ const MessageInput = () => {
                    className="input input-ghost w-full focus:bg-opacity-0 focus:outline-none"
                    placeholder="Type a message..."
                    value={message}
-                   disabled={loading}
                    onChange={(e) => setMessage(e.target.value)}
             />
             <button type={"submit"}

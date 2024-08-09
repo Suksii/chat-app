@@ -1,22 +1,27 @@
-import React from 'react';
+import React, {useEffect, useRef} from 'react';
 import Message from "./Message.jsx";
-import {useAuth} from "../context/AuthContext.jsx";
 import useGetMessages from "../hooks/useGetMessages.jsx";
 
 const Messages = () => {
 
     const {messages, loading} = useGetMessages();
+    const lastMessage = useRef();
 
-    console.log(messages)
-
-    // if(loading) return <p className="text-center text-gray-500">Loading...</p>
+    useEffect(() => {
+        setTimeout(() => {
+            lastMessage.current.scrollIntoView({behavior: 'auto'});
+        }, 100);
+    }, [messages])
 
     return (
         <div className="flex-1 overflow-y-auto py-1 px-1">
+            {!loading && messages.length > 0 && messages.map((message) => (
+                <div key={message._id} ref={lastMessage}>
+                    <Message message={message}/>
+                </div>
+            ))}
+            {!loading && messages.length === 0 && <p className="text-center text-gray-500">Select a chat to start messaging</p>}
             {loading && <p className="text-center text-gray-500">Loading...</p>}
-            {messages.length > 0
-                ? messages.map((message, index) => <Message key={index} message={message}/>)
-                : <p className="text-center text-gray-500">Select a chat to start messaging</p>}
         </div>
     );
 };

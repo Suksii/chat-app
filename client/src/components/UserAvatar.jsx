@@ -1,11 +1,13 @@
-import React, {useState} from 'react';
+import React from 'react';
+import {useSocket} from "../context/SocketContext.jsx";
 
-const UserAvatar = () => {
+const UserAvatar = ({user}) => {
 
-    const [online, setOnline] = useState(false)
+    const {onlineUsers} = useSocket();
+    const isOnline = onlineUsers.includes(user._id);
 
     return (
-        <div className={`avatar  ${online ? 'online' : 'offline'}`}>
+        <div className={`avatar  ${isOnline ? 'online' : ''}`}>
             <div className="w-10 h-10 rounded-full bg-gray-300">
                 {/*<img src="" alt="" className="w-full h-full object-cover rounded-full"/>*/}
             </div>

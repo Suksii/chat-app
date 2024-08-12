@@ -12,12 +12,18 @@ export const SocketProvider = ({children}) => {
 
     useEffect(() => {
         if(currentUser){
-            const newSocket = io("http://localhost:5173", {query: {userId: currentUser._id}});
-            setSocket(newSocket);
-            return () => newSocket.close();
+            const socket = io("http://localhost:5173", {query: {userId: currentUser._id}});
+            setSocket(socket);
+
+            socket.on('getOnlineUsers', (users) => {
+                setOnlineUsers(users);
+            });
+            return () => socket.close();
         } else {
-            if(socket) socket.close();
-            setSocket(null);
+            if(socket) {
+                socket.close();
+                setSocket(null);
+            }
         }
     }, [currentUser]);
 
@@ -27,6 +33,6 @@ export const SocketProvider = ({children}) => {
         </SocketContext.Provider>
     );
 }
-const useSocket = () => {
+export const useSocket = () => {
     return useContext(SocketContext);
 }

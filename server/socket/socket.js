@@ -8,14 +8,26 @@ const server = http.createServer(app);
 
 const io = new Server(server, {
     cors: {
-        origin: "http://localhost:3000",
+        origin: "http://localhost:3001",
         methods: ["GET", "POST"]
     }
 });
 
+const userSocketMap = () => {}
+
 io.on('connection', (socket) => {
     console.log('a user connected', socket.id);
+
+    const userId = socket.handshake.query.userId;
+    if(userId !== undefined){
+        userSocketMap[userId] = socket.id;
+    }
+    io.emit('user-connected', userId);
+
+
     socket.on('disconnect', () => {
+        delete userSocketMap[userId];
+        io.emit('user-disconnected', userId);
         console.log('user disconnected', socket.id);
     });
 });

@@ -6,6 +6,8 @@ const UserAvatar = ({user}) => {
     const {onlineUsers} = useSocket();
     const isOnline = onlineUsers.includes(user._id);
 
+    console.log(onlineUsers, user._id, isOnline);
+
     return (
         <div className={`avatar  ${isOnline ? 'online' : ''}`}>
             <div className="w-10 h-10 rounded-full bg-gray-300">

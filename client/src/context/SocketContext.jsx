@@ -12,7 +12,7 @@ export const SocketProvider = ({children}) => {
 
     useEffect(() => {
         if(currentUser){
-            const socket = io("http://localhost:5173", {query: {userId: currentUser._id}});
+            const socket = io("http://localhost:3001", {query: {userId: currentUser._id}});
             setSocket(socket);
 
             socket.on('getOnlineUsers', (users) => {

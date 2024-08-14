@@ -6,6 +6,7 @@ import Loading from "../loading/Loading.jsx";
 const Conversations = () => {
 
     const {loading, users} = useGetConversations();
+
     return (
         <div className="flex flex-col flex-1 overflow-y-auto">
                 {users.map((user, index) => {

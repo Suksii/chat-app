@@ -4,10 +4,7 @@ import {Navigate} from "react-router-dom";
 
 const ProtectedRoute = ({element}) => {
 
-    const {currentUser, loading} = useAuth();
-
-    if (loading || currentUser === null)
-        return <div>Loading...</div>
+    const {currentUser} = useAuth();
 
     return currentUser ? element : <Navigate to="/login"/>
 };

@@ -8,15 +8,12 @@ const Login = () => {
 
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    const {login, loading} = useLogin();
-    const [error, setError] = useState(null);
+    const {login, loading, error} = useLogin();
 
     const handleLogin = async (e) => {
         e.preventDefault();
         await login(username, password);
     }
-
-
         return (
             <div className="flex flex-col justify-center items-center min-w-96 mx-auto">
                 <div className="w-full bg-gray-100 bg-clip-padding backdrop-filter rounded-lg px-4 py-8 backdrop-blur-lg bg-opacity-10">
@@ -32,6 +29,7 @@ const Login = () => {
                                className="input input-ghost w-full focus:bg-opacity-0 focus:outline-none"
                                onChange={(e) => setPassword(e.target.value)}
                         />
+                        {error && <p className="text-red-500 text-sm">{error}</p>}
                         <p className="text-gray-300 flex gap-2 items-center">
                             <span>Don't have an account?</span>
                             <Link to="/register" className="text-blue-600 font-semibold">Register here</Link>

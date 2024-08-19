@@ -9,11 +9,13 @@ const Login = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const {login, loading} = useLogin();
+    const [error, setError] = useState(null);
 
     const handleLogin = async (e) => {
         e.preventDefault();
         await login(username, password);
     }
+
 
         return (
             <div className="flex flex-col justify-center items-center min-w-96 mx-auto">

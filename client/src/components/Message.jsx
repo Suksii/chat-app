@@ -7,7 +7,7 @@ const Message = ({message}) => {
     const {currentUser} = useAuth();
     const {selectedConversation} = useConversations();
 
-    const isSendersMessage = message.senderID === currentUser._id;
+    const isSendersMessage = message.senderID === currentUser?._id;
     const timeSent = message.createdAt.split('T')[1].slice(0, 5)
 
     return (

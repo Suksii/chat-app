@@ -9,7 +9,7 @@ const NoChatSelected = () => {
         <div className="flex-1 flex items-center justify-center">
             <div className="text-center">
                 <h1 className="text-4xl font-bold">Welcome to Chat App,</h1>
-                <h2 className="text-2xl font-semibold mt-2">{currentUser.fullName}</h2>
+                <h2 className="text-2xl font-semibold mt-2">{currentUser?.fullName}</h2>
                 <p className="text-gray-500 mt-2">Click on a chat to start messaging</p>
                 <div className="mt-4 flex justify-center">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-12 text-gray-600">

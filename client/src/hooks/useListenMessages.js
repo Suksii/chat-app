@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import {useEffect} from 'react';
 import {useSocket} from "../context/SocketContext.jsx";
 import {useConversations} from "../context/ConversationsContext.jsx";
 import notificationSound from "../assets/notification/notification.mp3";
@@ -10,16 +10,14 @@ const UseListenMessages = () => {
 
     useEffect(() => {
         socket?.on('newMessage', (message) => {
-            const notiication = new Audio(notificationSound);
-            notiication.play();
+            const notification = new Audio(notificationSound);
+            notification.play();
             setMessages(messages => [...messages, message]);
         });
         return () => {
             socket?.off('newMessage');
         }
     }, [socket, messages, setMessages]);
-
-    return {}
 };
 
 export default UseListenMessages;

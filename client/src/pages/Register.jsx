@@ -9,11 +9,26 @@ const Register = () => {
     const [fullName, setFullName] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
+    const [error, setError] = useState(null);
     const {register, loading} = useRegister();
 
 
     const handleRegister = async (e) => {
         e.preventDefault();
+        setError(null);
+
+        if(username.trim() === "" || fullName.trim() === "" || password.trim() === "" || confirmPassword.trim() === "") {
+            setError("Please fill all fields");
+            return;
+        }
+        if (password !== confirmPassword) {
+            setError("Passwords do not match");
+            return;
+        }
+        if(password.length < 6) {
+            setError("Password must be at least 6 characters");
+            return;
+        }
         await register(username, fullName, password, confirmPassword);
     }
 
@@ -42,6 +57,7 @@ const Register = () => {
                            className="input input-ghost w-full focus:bg-opacity-0 focus:outline-none"
                            onChange={(e) => setConfirmPassword(e.target.value)}
                     />
+                    {error && <p className="text-red-500 text-sm">{error}</p>}
                     <p className="text-gray-300 flex gap-2 items-center">
                         <span>Already have an account?</span>
                         <Link to="/login" className="text-blue-600 font-semibold">Login here</Link>

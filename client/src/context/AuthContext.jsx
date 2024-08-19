@@ -11,7 +11,7 @@ export const AuthProvider = ({children}) => {
     const getProfile = async () => {
         setLoading(true)
         try {
-            const response = await axios.get("/auth/profile", {withCredentials: true});
+            const response = await axios.get("/auth/profile");
             setCurrentUser(response.data);
         } catch (error) {
             console.error(error);

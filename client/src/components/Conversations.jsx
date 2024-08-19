@@ -8,7 +8,7 @@ const Conversations = () => {
     const {loading, users} = useGetConversations();
 
     return (
-        <div className="flex flex-col flex-1 overflow-y-auto">
+        <div className="flex flex-col flex-1 overflow-y-auto h-[500px]">
                 {users.map((user, index) => {
                     return (
                         <div key={user._id}>

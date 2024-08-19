@@ -8,8 +8,6 @@ const MessageWindow = () => {
 
     const {selectedConversation, setSelectedConversation} = useConversations();
 
-    console.log("selectedConversation", selectedConversation);
-
     useEffect(() => {
         return () => setSelectedConversation(null);
     }, [])

@@ -5,10 +5,9 @@ import {useConversations} from "../context/ConversationsContext.jsx";
 const Message = ({message}) => {
 
     const {currentUser} = useAuth();
-    const {selectedConversation} = useConversations();
 
     const isSendersMessage = message.senderID === currentUser?._id;
-    const timeSent = message.createdAt.split('T')[1].slice(0, 5)
+    const timeSent = message?.createdAt.split('T')[1].slice(0, 5)
 
     return (
         <div className={`chat ${isSendersMessage ? 'chat-end' : 'chat-start'}`}>
@@ -19,7 +18,7 @@ const Message = ({message}) => {
                     {/*     className="w-full h-full object-cover rounded-full"/>*/}
                 </div>
             </div>
-            <div className={`chat-bubble bg-opacity-50 p-2 rounded-md ${isSendersMessage ? 'bg-gray-100' : 'bg-neutral'}`}>{message.message}</div>
+            <div className={`chat-bubble bg-opacity-50 p-2 rounded-md ${isSendersMessage ? 'bg-gray-100' : 'bg-neutral'}`}>{message?.message}</div>
             <div className="chat-footer text-sm text-gray-500">{timeSent}</div>
             
         </div>

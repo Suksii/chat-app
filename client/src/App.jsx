@@ -11,8 +11,6 @@ function App() {
 
     axios.defaults.baseURL = "http://localhost:3001/api";
     axios.defaults.withCredentials = true;
-    const {currentUser} = useAuth();
-    console.log("current user: ",currentUser);
 
   return (
     <div className="h-screen flex items-center justify-center">

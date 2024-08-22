@@ -20,12 +20,17 @@ export const getReceiverSocketId = (receiverId) => {
 
 const userSocketMap = {};
 
-io.on('connection', (socket) => {
+io.on('connection', async (socket) => {
     console.log('a user connected', socket.id);
 
     const userId = socket.handshake.query.userId;
     if(userId !== undefined){
         userSocketMap[userId] = socket.id;
+        try {
+            await User.findByIdAndUpdate(userId, {online: true}, {new: true});
+        } catch (error) {
+            console.error(error);
+        }
     }
     io.emit('getOnlineUsers', Object.keys(userSocketMap));
 

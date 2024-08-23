@@ -21,12 +21,12 @@ const Login = () => {
                     <form className="w-full flex flex-col items-center justify-center gap-2 py-4" onSubmit={handleLogin}>
                         <input placeholder="Type username"
                                type="text"
-                               className="input input-ghost w-full focus:bg-opacity-0 focus:outline-none"
+                               className="input input-ghost w-full focus:bg-opacity-0 focus:outline-none focus:text-black text-black"
                                onChange={(e) => setUsername(e.target.value)}
                         />
                         <input placeholder="Type password"
                                type="password"
-                               className="input input-ghost w-full focus:bg-opacity-0 focus:outline-none"
+                               className="input input-ghost w-full focus:bg-opacity-0 focus:outline-none focus:text-black text-black"
                                onChange={(e) => setPassword(e.target.value)}
                         />
                         {error && <p className="text-red-500 text-sm">{error}</p>}

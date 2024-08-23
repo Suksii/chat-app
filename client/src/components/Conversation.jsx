@@ -21,11 +21,11 @@ const Conversation = ({user}) => {
             <div className="flex items-center gap-2">
                 <UserAvatar user={user}/>
                 <div>
-                    <div className="text-lg font-semibold">{user.fullName}</div>
-                    <p className="text-sm text-gray-500">{lastMessage}</p>
+                    <div className="text-lg font-semibold text-black">{user.fullName}</div>
+                    <p className="text-sm text-gray-400">{lastMessage}</p>
                 </div>
             </div>
-            <p className="text-sm text-gray-500">{lastMessageTime}</p>
+            <p className="text-sm text-gray-400">{lastMessageTime}</p>
         </div>
     );
 };

@@ -17,7 +17,7 @@ const MessageInput = () => {
     return (
         <form className="relative flex items-center gap-2 p-4" onSubmit={handleSendMessage}>
             <input type="text"
-                   className="input input-ghost w-full focus:bg-opacity-0 focus:outline-none"
+                   className="input input-ghost w-full focus:bg-opacity-0 focus:outline-none focus:text-black text-black"
                    placeholder="Type a message..."
                    value={message}
                    onChange={(e) => setMessage(e.target.value)}

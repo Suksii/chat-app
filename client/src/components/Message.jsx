@@ -19,7 +19,7 @@ const Message = ({message}) => {
                 </div>
             </div>
             <div className={`chat-bubble bg-opacity-50 p-2 rounded-md ${isSendersMessage ? 'bg-gray-100' : 'bg-neutral'}`}>{message?.message}</div>
-            <div className="chat-footer text-sm text-gray-500">{timeSent}</div>
+            <div className="chat-footer text-[12px] text-gray-300">{timeSent}</div>
             
         </div>
     );

@@ -22,7 +22,7 @@ const Search = () => {
     return (
         <div className="w-full">
             <div className="relative">
-                <input className={`input focus:outline-none ${wide ? 'w-full glass' : 'w-0 bg-transparent'} duration-300`}
+                <input className={`input focus:outline-none ${wide ? 'w-full glass' : 'w-0 bg-transparent'} duration-300 text-black placeholder:text-gray-600`}
                        placeholder="Search"
                        value={search}
                        onChange={handleSearch}

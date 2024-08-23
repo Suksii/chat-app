@@ -27,14 +27,13 @@ const Messages = () => {
     return (
         <div className="flex-1 overflow-y-auto py-1 px-1">
             {!loading && filteredMessages.length > 0 && filteredMessages.map((message) => {
-                const receiverID = message.receiverID !== currentUser?._id;
                 return(
                 <div key={message._id} ref={lastMessage}>
                     <Message message={message}/>
                 </div>
             )})}
             {loading && <p className="text-center text-gray-500">Loading...</p>}
-            {!loading && filteredMessages.length === 0 && <p className="text-center text-gray-500">Send a message to start the conversation</p>}
+            {!loading && filteredMessages.length === 0 && <p className="text-center text-gray-300">Send a message to start the conversation</p>}
         </div>
     );
 };

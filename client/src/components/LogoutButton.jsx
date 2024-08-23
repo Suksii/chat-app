@@ -16,7 +16,7 @@ const LogoutButton = () => {
             {
                 loading ? <Loading/> :
                 <>
-                    <p className={`text-lg font-semibold ${isHovered ? 'w-12 opacity-100' : 'w-0 opacity-0'} duration-300`}>Logout</p>
+                    <p className={`text-lg font-semibold ${isHovered ? 'w-12 opacity-100' : 'w-0 opacity-0'} duration-300 text-black`}>Logout</p>
                     <svg xmlns="http://www.w3.org/2000/svg"
                       fill="none"
                       viewBox="0 0 24 24"

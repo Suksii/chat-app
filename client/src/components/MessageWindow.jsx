@@ -26,8 +26,8 @@ const MessageWindow = () => {
                 <div className="w-full flex gap-2 items-center bg-gray-100 bg-opacity-50 p-1">
                     <UserAvatar user={selectedConversation}/>
                     <div className="flex items-end gap-2">
-                        <p className="text-lg font-semibold">{selectedConversation?.fullName}</p>
-                        <p className="text-sm text-gray-500">{isOnline}</p>
+                        <p className="text-lg text-black font-semibold">{selectedConversation?.fullName}</p>
+                        <p className="text-sm text-gray-700">{lastSeen ? isOnline : ''}</p>
                     </div>
                 </div>
                     <Messages/>

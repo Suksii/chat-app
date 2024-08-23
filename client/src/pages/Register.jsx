@@ -1,7 +1,8 @@
-import React, {useState} from 'react';
+import {useRef, useState} from 'react';
 import {Link} from "react-router-dom";
 import useRegister from "../hooks/useRegister.jsx";
 import Loading from "../loading/Loading.jsx";
+import axios from "axios";
 
 const Register = () => {
 
@@ -10,6 +11,8 @@ const Register = () => {
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const [error, setError] = useState(null);
+    const imgRef = useRef();
+    const [profilePicture, setProfilePicture] = useState(null);
     const {register, loading} = useRegister();
 
 
@@ -29,13 +32,35 @@ const Register = () => {
             setError("Password must be at least 6 characters");
             return;
         }
-        await register(username, fullName, password, confirmPassword);
+        await register(username, fullName, profilePicture, password, confirmPassword);
+    }
+
+    const handleImage = async () => {
+        const file = imgRef.current.files[0];
+        const formData = new FormData();
+        formData.append("photo", file);
+        axios.post("/users/upload", formData, {
+            headers: {
+                "Content-Type": "multipart/form-data"
+            }
+        }).then(response => {
+            setProfilePicture(response.data[0]);
+        }).catch(error => {
+            console.error(error);
+        });
     }
 
     return (
         <div className="flex flex-col justify-center items-center min-w-96 mx-auto">
             <div className="w-full bg-gray-100 bg-clip-padding backdrop-filter rounded-lg px-4 py-8 backdrop-blur-lg bg-opacity-10">
                 <h1 className="text-3xl text-gray-300 text-center font-semibold">Register</h1>
+                <div className="w-[140px] h-[140px] rounded-full mx-auto my-4">
+                    {profilePicture ? <img src={`http://localhost:3001/uploads/${profilePicture}`} alt="profile" className="w-full h-full object-cover rounded-full"/> : <img src="https://www.pngkey.com/png/full/114-1149878_setting-user-avatar-in-specific-size-without-breaking.png" alt="profile" className="w-full h-full object-cover"/>}
+                </div>
+                <div onClick={() => imgRef.current.click()} className="w-[60%] mx-auto">
+                    <input type="file" ref={imgRef} className="hidden" onChange={handleImage}/>
+                    <button className="w-full btn glass btn-neutral text-xl">Upload Image</button>
+                </div>
                 <form className="w-full flex flex-col items-center justify-center gap-2 py-4" onSubmit={handleRegister}>
                     <input placeholder="Type username"
                            type="text"

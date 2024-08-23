@@ -1,4 +1,4 @@
-import {createContext, useContext, useEffect, useState, useMemo} from "react";
+import {createContext, useContext, useEffect, useState} from "react";
 import axios from "axios";
 
 export const AuthContext = createContext();
@@ -13,6 +13,7 @@ export const AuthProvider = ({children}) => {
         try {
             const response = await axios.get("/auth/profile");
             setCurrentUser(response.data);
+            console.log("current:",response.data);
         } catch (error) {
             console.error(error);
             setCurrentUser(null);

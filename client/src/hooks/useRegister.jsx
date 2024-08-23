@@ -7,12 +7,13 @@ const useRegister = () => {
     const navigate = useNavigate();
     const [loading, setLoading] = useState(false);
 
-    const register = async (username, fullName, password, confirmPassword) => {
+    const register = async (username, fullName, profilePicture, password, confirmPassword) => {
         setLoading(true);
         try {
             await axios.post("/auth/register", {
                 username,
                 fullName,
+                profilePicture,
                 password,
                 confirmPassword
             });

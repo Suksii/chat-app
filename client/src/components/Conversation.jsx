@@ -22,7 +22,7 @@ const Conversation = ({user}) => {
                 <UserAvatar user={user}/>
                 <div>
                     <div className="text-lg font-semibold text-black">{user.fullName}</div>
-                    <p className="text-sm text-gray-400">{lastMessage}</p>
+                    <p className="text-sm text-gray-400 line-clamp-1">{lastMessage}</p>
                 </div>
             </div>
             <p className="text-sm text-gray-400">{lastMessageTime}</p>

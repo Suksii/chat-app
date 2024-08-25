@@ -33,8 +33,10 @@ The application allows users to register, login, and chat with other registered 
 - **Message Window:** Allows users to view previous messages and send new messages to other users from sidebar.
 
 ## Register Page
-
 ![chat-app_register-page](https://github.com/user-attachments/assets/e11c021c-4219-40e3-a619-f4e9022a716c)
+
+## Login Page
+![chat-app_login-page](https://github.com/user-attachments/assets/a6bb6481-8bde-471e-a266-0fdfc5d00adc)
 
 
 

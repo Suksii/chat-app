@@ -38,6 +38,9 @@ The application allows users to register, login, and chat with other registered 
 ## Login Page
 ![chat-app_login-page](https://github.com/user-attachments/assets/a6bb6481-8bde-471e-a266-0fdfc5d00adc)
 
+## Chat Page
+![chat-app_home-page](https://github.com/user-attachments/assets/f7262b09-d49b-4f84-bac2-9c2b346debc3)
+
 
 
 

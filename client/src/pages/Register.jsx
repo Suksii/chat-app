@@ -13,7 +13,7 @@ const Register = () => {
     const [error, setError] = useState(null);
     const imgRef = useRef();
     const [profilePicture, setProfilePicture] = useState(null);
-    const {register, loading} = useRegister();
+    const {register, loading, error: registerError} = useRegister();
 
 
     const handleRegister = async (e) => {
@@ -44,9 +44,10 @@ const Register = () => {
                 "Content-Type": "multipart/form-data"
             }
         }).then(response => {
-            setProfilePicture(response.data[0]);
+            setProfilePicture(response.data.filename);
         }).catch(error => {
             console.error(error);
+            setError(error.response?.data?.message || "Image upload failed");
         });
     }
 
@@ -82,7 +83,7 @@ const Register = () => {
                            className="input input-ghost w-full focus:bg-opacity-0 focus:outline-none focus:text-black text-black"
                            onChange={(e) => setConfirmPassword(e.target.value)}
                     />
-                    {error && <p className="text-red-500 text-sm">{error}</p>}
+                    {(error || registerError) && <p className="text-red-500 text-sm">{error || registerError}</p>}
                     <p className="text-gray-300 flex gap-2 items-center">
                         <span>Already have an account?</span>
                         <Link to="/login" className="text-blue-600 font-semibold">Login here</Link>

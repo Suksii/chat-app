@@ -20,11 +20,9 @@ export const sendMessage = async (req, res) => {
       return res.status(400).json({ message: "Message cannot be empty" });
     }
     if (message.length > MAX_MESSAGE_LENGTH) {
-      return res
-        .status(400)
-        .json({
-          message: `Message cannot exceed ${MAX_MESSAGE_LENGTH} characters`,
-        });
+      return res.status(400).json({
+        message: `Message cannot exceed ${MAX_MESSAGE_LENGTH} characters`,
+      });
     }
 
     let conversation = await Conversation.findOne({
@@ -74,11 +72,7 @@ export const getMessages = async (req, res) => {
       },
     }).populate("messages");
 
-    if (!conversation) {
-      return res.status(404).json({ message: "Conversation not found" });
-    }
-
-    res.status(200).json(conversation.messages);
+    res.status(200).json(conversation ? conversation.messages : []);
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Internal Server Error" });

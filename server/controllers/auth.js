@@ -46,7 +46,7 @@ export const register = async (req, res) => {
         .status(400)
         .json({ message: "Password must be at least 6 characters" });
     }
-    if (profilePicture !== undefined && typeof profilePicture !== "string") {
+    if (profilePicture != null && typeof profilePicture !== "string") {
       return res.status(400).json({ message: "Invalid profile picture" });
     }
 

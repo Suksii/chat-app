@@ -1,30 +1,38 @@
-import React, {useState} from 'react';
-import {useAuth} from "../context/AuthContext.jsx";
-import {useConversations} from "../context/ConversationsContext.jsx";
-import {uploadUrl} from "../config.js";
+import React from "react";
+import { useAuth } from "../context/AuthContext.jsx";
+import { useConversations } from "../context/ConversationsContext.jsx";
+import { uploadUrl } from "../config.js";
 
-const Message = ({message}) => {
+const Message = ({ message }) => {
+  const { currentUser } = useAuth();
 
-    const {currentUser} = useAuth();
+  const isSendersMessage = message.senderID === currentUser?._id;
+  const timeSent = message?.createdAt?.split("T")[1]?.slice(0, 5);
+  const { selectedConversation } = useConversations();
 
-    const isSendersMessage = message.senderID === currentUser?._id;
-    const timeSent = message?.createdAt.split('T')[1].slice(0, 5)
-    const {selectedConversation} = useConversations();
-
-    return (
-        <div className={`chat ${isSendersMessage ? 'chat-end' : 'chat-start'}`}>
-            <div className="chat-image avatar">
-                <div className="w-10 h-10 rounded-full bg-gray-100">
-                    <img src={uploadUrl(isSendersMessage ? currentUser?.profilePicture : selectedConversation.profilePicture)}
-                         alt=""
-                         className="w-full h-full object-cover rounded-full"/>
-                </div>
-            </div>
-            <div className={`chat-bubble bg-opacity-50 p-2 rounded-md ${isSendersMessage ? 'bg-gray-100' : 'bg-neutral'}`}>{message?.message}</div>
-            <div className="chat-footer text-[12px] text-gray-300">{timeSent}</div>
-            
+  return (
+    <div className={`chat ${isSendersMessage ? "chat-end" : "chat-start"}`}>
+      <div className="chat-image avatar">
+        <div className="w-10 h-10 rounded-full bg-gray-100">
+          <img
+            src={uploadUrl(
+              isSendersMessage
+                ? currentUser?.profilePicture
+                : selectedConversation.profilePicture,
+            )}
+            alt=""
+            className="w-full h-full object-cover rounded-full"
+          />
         </div>
-    );
+      </div>
+      <div
+        className={`chat-bubble bg-opacity-50 p-2 rounded-md ${isSendersMessage ? "bg-gray-100" : "bg-neutral"}`}
+      >
+        {message?.message}
+      </div>
+      <div className="chat-footer text-[12px] text-gray-300">{timeSent}</div>
+    </div>
+  );
 };
 
 export default Message;

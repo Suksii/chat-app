@@ -1,6 +1,7 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { useAuth } from "./AuthContext.jsx";
 import io from "socket.io-client";
+import { SERVER_URL } from "../config.js";
 
 const SocketContext = createContext();
 
@@ -11,7 +12,7 @@ export const SocketProvider = ({ children }) => {
 
   useEffect(() => {
     if (currentUser) {
-      const socket = io("http://localhost:3001", { withCredentials: true });
+      const socket = io(SERVER_URL, { withCredentials: true });
       setSocket(socket);
 
       socket.on("getOnlineUsers", (users) => {

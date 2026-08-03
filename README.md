@@ -26,6 +26,40 @@ The application allows users to register, login, and chat with other registered 
 - **Multer**
 - **Nodemon**
 
+## Setup
+
+Requires **Node 20** (`nvm use` picks it up from `.nvmrc`) and a MongoDB instance.
+
+```bash
+# Backend
+npm install
+cp .env.example .env      # then fill in MONGO_URI and JWT_SECRET
+npm run dev
+
+# Frontend, in a second terminal
+cd client
+npm install
+cp .env.example .env
+npm run dev
+```
+
+Generate a signing secret for `JWT_SECRET` with:
+
+```bash
+node -e "console.log(require('crypto').randomBytes(48).toString('hex'))"
+```
+
+### Environment variables
+
+| Variable | Where | Purpose |
+| --- | --- | --- |
+| `PORT` | root `.env` | Port the API listens on |
+| `MONGO_URI` | root `.env` | MongoDB connection string |
+| `CLIENT_URL` | root `.env` | Origin allowed by CORS and the socket handshake |
+| `JWT_SECRET` | root `.env` | Signs auth tokens |
+| `NODE_ENV` | root `.env` | Set to `production` to enable `Secure` / `SameSite=None` cookies |
+| `VITE_SERVER_URL` | `client/.env` | Base URL of the backend |
+
 ## Features
 
 - **User Authentification:** Register, login, logout and profile management

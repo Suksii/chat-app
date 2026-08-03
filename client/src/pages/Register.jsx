@@ -3,6 +3,7 @@ import {Link} from "react-router-dom";
 import useRegister from "../hooks/useRegister.jsx";
 import Loading from "../loading/Loading.jsx";
 import axios from "axios";
+import {uploadUrl} from "../config.js";
 
 const Register = () => {
 
@@ -56,7 +57,7 @@ const Register = () => {
             <div className="w-full bg-gray-100 bg-clip-padding backdrop-filter rounded-lg px-4 py-8 backdrop-blur-lg bg-opacity-10">
                 <h1 className="text-3xl text-gray-300 text-center font-semibold">Register</h1>
                 <div className="w-[140px] h-[140px] rounded-full mx-auto my-4">
-                    {profilePicture ? <img src={`http://localhost:3001/uploads/${profilePicture}`} alt="profile" className="w-full h-full object-cover rounded-full"/> : <img src="https://www.pngkey.com/png/full/114-1149878_setting-user-avatar-in-specific-size-without-breaking.png" alt="profile" className="w-full h-full object-cover"/>}
+                    {profilePicture ? <img src={uploadUrl(profilePicture)} alt="profile" className="w-full h-full object-cover rounded-full"/> : <img src="https://www.pngkey.com/png/full/114-1149878_setting-user-avatar-in-specific-size-without-breaking.png" alt="profile" className="w-full h-full object-cover"/>}
                 </div>
                 <div onClick={() => imgRef.current.click()} className="w-[60%] mx-auto">
                     <input type="file" ref={imgRef} className="hidden" onChange={handleImage}/>
